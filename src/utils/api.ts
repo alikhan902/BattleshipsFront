@@ -83,7 +83,7 @@ export const reqGameDel = async (id: string) => {
 }
 
 const request = async (url: string, method: string, credentials: boolean, headers: HeadersInit, body: BodyInit | null = null): Promise<any> => {
-    const baseUrl = "https://e005-2a12-5940-a7e1-00-2.ngrok-free.app/api";  // Используйте правильную переменную окружения
+    const baseUrl = "https://battleshipsback.onrender.com/api";  // Используйте правильную переменную окружения
     if (!baseUrl) {
         throw new Error('Base URL is not defined');
     }
