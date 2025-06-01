@@ -83,25 +83,22 @@ export const reqGameDel = async (id: string) => {
 }
 
 const request = async (url: string, method: string, credentials: boolean, headers: HeadersInit, body: BodyInit | null = null): Promise<any> => {
-    const baseUrl = "https://battleshipsback.onrender.com/api";  // Используйте правильную переменную окружения
-    if (!baseUrl) {
-        throw new Error('Base URL is not defined');
-    }
+    const baseUrl = "https://battleshipsback.onrender.com/api";
 
     // Получаем CSRF токен из cookies
-    const csrfToken = getCookie('csrftoken'); 
+    const csrfToken = getCookie('csrftoken');
 
     // Обновляем заголовки запроса
     const updatedHeaders = {
         'Content-Type': 'application/json',
         ...headers,
-        ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),  // Если CSRF токен есть, добавляем его в заголовки
+        ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),  // Добавляем CSRF токен, если он есть
     };
 
     // Выполняем запрос
     const response = await fetch(`${baseUrl}${url}`, {
         method: method,
-        credentials: credentials ? "include" : undefined,  // Если нужно передавать куки, используем 'include'
+        credentials: credentials ? "include" : undefined,  // Если нужно передавать куки
         headers: updatedHeaders,
         body: body,
     });
@@ -114,5 +111,5 @@ const request = async (url: string, method: string, credentials: boolean, header
         }
     }
 
-    return response;  // Возвращаем ответ
+    return response.json();  // Возвращаем JSON-ответ
 };
