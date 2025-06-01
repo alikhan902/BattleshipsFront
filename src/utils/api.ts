@@ -83,26 +83,30 @@ export const reqGameDel = async (id: string) => {
 }
 
 const request = async (url: string, method: string, credentials: boolean, headers: HeadersInit, body: BodyInit | null = null): Promise<any> => {
-    const baseUrl = "https://c95f-2a12-5940-a7e1-00-2.ngrok-free.app/api";  // Используйте правильную переменную окружения
+    const baseUrl = "https://e005-2a12-5940-a7e1-00-2.ngrok-free.app/api";  // Используйте правильную переменную окружения
     if (!baseUrl) {
         throw new Error('Base URL is not defined');
     }
 
-    const csrfToken = getCookie('csrftoken');  // Получаем CSRF токен из cookies
+    // Получаем CSRF токен из cookies
+    const csrfToken = getCookie('csrftoken'); 
+
+    // Обновляем заголовки запроса
     const updatedHeaders = {
         'Content-Type': 'application/json',
         ...headers,
-        ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),  // Добавляем CSRF токен в заголовки, если он существует
+        ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),  // Если CSRF токен есть, добавляем его в заголовки
     };
 
-    const response = await fetch(`${baseUrl}${url}`, 
-    {
+    // Выполняем запрос
+    const response = await fetch(`${baseUrl}${url}`, {
         method: method,
-        credentials: credentials ? "include" : undefined,  // или null, если не нужно передавать cookies
+        credentials: credentials ? "include" : undefined,  // Если нужно передавать куки, используем 'include'
         headers: updatedHeaders,
         body: body,
     });
 
+    // Обработка ошибок
     if (!response.ok) {
         if (response.status >= 400) {
             const errorText = await response.text();
@@ -110,5 +114,5 @@ const request = async (url: string, method: string, credentials: boolean, header
         }
     }
 
-    return response;
+    return response;  // Возвращаем ответ
 };
