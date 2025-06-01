@@ -1,0 +1,80 @@
+/* Комната занимает всю ширину и высоту экрана с градиентом */
+.room {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    height: 100vh;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+/* Заголовок комнаты */
+.header {
+    height: 70px;
+    width: 100vw;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #0f2027;
+}
+
+.header__roomName {
+    width: 100vw;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.gameZone {
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+/* Игровые поля */
+.field {
+    width: 35%;
+    aspect-ratio: 1/1;
+    background-color: #1c3b52;
+    border: 2px solid #4fc3f7;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 1px;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.4);
+    border-radius: 8px;
+}
+
+/* Ячейки поля (если есть) */
+.cell {
+    background-color: #355a75;
+    border: 1px solid #4fc3f7;
+    width: 100%;
+    height: 100%;
+}
+
+/* Блок с информацией о ходе */
+.info {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    position: relative;
+    top: -5vh;
+}
+
+.info__turn,
+.info__turnOwner {
+    margin: 6px 0;
+}
