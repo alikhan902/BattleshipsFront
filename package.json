@@ -3,7 +3,6 @@
   "name": "battle-ship",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alikhan902.github.io/BattleshipsFront/",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
