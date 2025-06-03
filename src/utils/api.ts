@@ -111,5 +111,5 @@ const request = async (url: string, method: string, credentials: boolean, header
         }
     }
 
-    return response.json();  // Возвращаем JSON-ответ
+    return response;  // Возвращаем JSON-ответ
 };
